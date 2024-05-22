@@ -1,6 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfhkytrjmfdv8"]
+[gd_scene load_steps=6 format=3 uid="uid://cfhkytrjmfdv8"]
 
 [ext_resource type="Shader" path="res://Shaders/mandelbrot.gdshader" id="1_2ox1x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lt65i"]
+shader = ExtResource("1_2ox1x")
+shader_parameter/zoom = 2.5
+shader_parameter/offset = Vector2(0.26, 0)
+shader_parameter/max_iterations = 300
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/color2 = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_wgqda"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v4abc"]
+gradient = SubResource("Gradient_wgqda")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tw426"]
 shader = ExtResource("1_2ox1x")
@@ -12,12 +25,22 @@ shader_parameter/color2 = Color(0, 0, 0, 1)
 
 [node name="Root" type="Node2D"]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lt65i")
+scale = Vector2(1000, 1000)
+texture = SubResource("GradientTexture2D_v4abc")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_tw426")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.03, 0.03)
