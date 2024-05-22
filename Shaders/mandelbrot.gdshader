@@ -1,14 +1,22 @@
 shader_type canvas_item;
 
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
+uniform float zoom : hint_range(0.1, 10.0) = 4.5;
+uniform vec2 offset = vec2(0.0, 0.0);
+uniform int max_iterations : hint_range(1, 1000) = 100;
+uniform vec4 color1 = vec4(0.0, 0.0, 0.0, 1.0); // Color for points inside the Mandelbrot set
+uniform vec4 color2 = vec4(1.0, 1.0, 1.0, 1.0); // Color for points outside the Mandelbrot set
 
 void fragment() {
-	// Called for every pixel the material is visible on.
-}
+    vec2 c = (UV - vec2(0.5, 0.5) - offset) * zoom;
+    vec2 z = vec2(0.0, 0.0);
+    int iterations = 0;
 
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}
+    while (length(z) <= 2.0 && iterations < max_iterations) {
+        z = vec2(z.x * z.x - z.y * z.y, 2.0 * z.x * z.y) + c;
+        iterations++;
+    }
+
+    float t = float(iterations) / float(max_iterations);
+    vec4 color = mix(color1, color2, t);
+    COLOR = color;
+}
