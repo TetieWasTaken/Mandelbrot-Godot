@@ -31,9 +31,6 @@ material = SubResource("ShaderMaterial_lt65i")
 scale = Vector2(1000, 1000)
 texture = SubResource("GradientTexture2D_v4abc")
 script = ExtResource("2_bakb4")
-zoom = 0.4
-m_offset = Vector2(-0.7, 0)
-scrolling_speed = 0.2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
