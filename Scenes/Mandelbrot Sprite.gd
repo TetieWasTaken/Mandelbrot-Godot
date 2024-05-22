@@ -25,5 +25,5 @@ func _process(delta : float) -> void:
 		m_offset += direction * scrolling_speed * delta / zoom
 
 	# Get the viewport size and set it to the shader
-	var viewport_size = get_viewport_rect().size - Vector2(100, 100)
+	var viewport_size = get_viewport_rect().size
 	material.set("shader_parameter/viewport_size", viewport_size)

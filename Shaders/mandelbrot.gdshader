@@ -5,7 +5,7 @@ uniform vec2 offset = vec2(-0.7, 0.0);
 uniform int max_iterations : hint_range(1, 1000) = 100;
 uniform vec4 color1 : source_color = vec4(1.0, 1.0, 1.0, 1.0); // Color for points inside the Mandelbrot set
 uniform vec4 color2 : source_color = vec4(0.0, 0.0, 0.0, 1.0); // Color for points outside the Mandelbrot set
-uniform vec2 viewport_size = vec2(1.0, 1.0);
+uniform vec2 viewport_size = vec2(800.0, 800.0);
 
 void fragment() {
     vec2 frag_coord = FRAGCOORD.xy;
