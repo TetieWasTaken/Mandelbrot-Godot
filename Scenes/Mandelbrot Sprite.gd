@@ -12,14 +12,18 @@ func _process(delta : float) -> void:
 	material.set("shader_parameter/zoom", zoom)
 	material.set("shader_parameter/offset", m_offset)
 	material.set("shader_parameter/max_iterations", max_iterations)
-	
+
 	if Input.is_action_pressed("zoom_out"):
 		zoom_target -= 1.02 * delta * zoom
 	elif Input.is_action_pressed("zoom_in"):
 		zoom_target += 1.02 * delta * zoom
-	
+
 	zoom = move_toward(zoom, zoom_target, zoom_speed * delta * zoom)
-	
+
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction != Vector2.ZERO:
 		m_offset += direction * scrolling_speed * delta / zoom
+
+	# Get the viewport size and set it to the shader
+	var viewport_size = get_viewport_rect().size - Vector2(100, 100)
+	material.set("shader_parameter/viewport_size", viewport_size)

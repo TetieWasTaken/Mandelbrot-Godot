@@ -10,6 +10,7 @@ shader_parameter/offset = Vector2(-0.7, 0)
 shader_parameter/max_iterations = 100
 shader_parameter/color1 = Color(1, 1, 1, 1)
 shader_parameter/color2 = Color(0, 0, 0, 1)
+shader_parameter/viewport_size = Vector2(1, 1)
 
 [sub_resource type="Gradient" id="Gradient_wgqda"]
 
@@ -23,6 +24,7 @@ shader_parameter/offset = Vector2(0.26, 0)
 shader_parameter/max_iterations = 100
 shader_parameter/color1 = Color(1, 1, 1, 1)
 shader_parameter/color2 = Color(0, 0, 0, 1)
+shader_parameter/viewport_size = Vector2(1, 1)
 
 [node name="Root" type="Node2D"]
 
@@ -31,6 +33,7 @@ material = SubResource("ShaderMaterial_lt65i")
 scale = Vector2(1000, 1000)
 texture = SubResource("GradientTexture2D_v4abc")
 script = ExtResource("2_bakb4")
+max_iterations = 400
 zoom_speed = 2.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
