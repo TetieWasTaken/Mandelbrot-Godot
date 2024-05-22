@@ -1,10 +1,9 @@
 extends Sprite2D
 
-var zoom = 2.5
-var m_offset = Vector2(0.26, 0.0)
-var max_iterations = 100
-
-@export var scrolling_speed : float = 1.0
+@export var zoom : float = 2.5
+@export var m_offset : Vector2 = Vector2(0.26, 0.0)
+@export var max_iterations : int = 100
+@export var scrolling_speed : float = 0.1
 
 func _process(delta : float) -> void:
 	material.set("shader_parameter/zoom", zoom)
