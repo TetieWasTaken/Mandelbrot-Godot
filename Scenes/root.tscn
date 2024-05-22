@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfhkytrjmfdv8"]
+[gd_scene load_steps=7 format=3 uid="uid://cfhkytrjmfdv8"]
 
 [ext_resource type="Shader" path="res://Shaders/mandelbrot.gdshader" id="1_2ox1x"]
+[ext_resource type="Script" path="res://Scenes/Mandelbrot Sprite.gd" id="2_bakb4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lt65i"]
 shader = ExtResource("1_2ox1x")
@@ -25,10 +26,12 @@ shader_parameter/color2 = Color(0, 0, 0, 1)
 
 [node name="Root" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Mandelbrot Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_lt65i")
 scale = Vector2(1000, 1000)
 texture = SubResource("GradientTexture2D_v4abc")
+script = ExtResource("2_bakb4")
+scrolling_speed = 10000.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -42,5 +45,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(0.03, 0.03)
