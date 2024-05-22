@@ -10,7 +10,7 @@ shader_parameter/offset = Vector2(-0.7, 0)
 shader_parameter/max_iterations = 100
 shader_parameter/color1 = Color(1, 1, 1, 1)
 shader_parameter/color2 = Color(0, 0, 0, 1)
-shader_parameter/viewport_size = Vector2(1, 1)
+shader_parameter/viewport_size = Vector2(800, 800)
 
 [sub_resource type="Gradient" id="Gradient_wgqda"]
 
