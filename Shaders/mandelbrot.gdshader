@@ -1,13 +1,13 @@
 shader_type canvas_item;
 
-uniform float zoom : hint_range(0.1, 10.0) = 2.5;
-uniform vec2 offset = vec2(0.26, 0.0);
+uniform float zoom : hint_range(0.1, 10.0) = 0.4;
+uniform vec2 offset = vec2(-0.7, 0.0);
 uniform int max_iterations : hint_range(1, 1000) = 100;
 uniform vec4 color1 : source_color = vec4(1.0, 1.0, 1.0, 1.0); // Color for points inside the Mandelbrot set
 uniform vec4 color2 : source_color = vec4(0.0, 0.0, 0.0, 1.0); // Color for points outside the Mandelbrot set
 
 void fragment() {
-    vec2 c = (UV - vec2(0.5, 0.5) - offset) * zoom;
+    vec2 c = (UV - vec2(0.5, 0.5)) / zoom + offset;
     vec2 z = vec2(0.0, 0.0);
     int iterations = 0;
 
