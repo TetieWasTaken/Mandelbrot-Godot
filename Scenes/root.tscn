@@ -4,11 +4,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tw426"]
 shader = ExtResource("1_2ox1x")
-shader_parameter/zoom = 1.0
-shader_parameter/offset = Vector2(0, 0)
+shader_parameter/zoom = 2.5
+shader_parameter/offset = Vector2(0.26, 0)
 shader_parameter/max_iterations = 100
-shader_parameter/color1 = Vector4(0, 0, 0, 1)
-shader_parameter/color2 = Vector4(1, 1, 1, 1)
+shader_parameter/color1 = Vector4(1, 1, 1, 1)
+shader_parameter/color2 = Vector4(0, 0, 0, 1)
 
 [node name="Root" type="Node2D"]
 
@@ -21,6 +21,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 576)
