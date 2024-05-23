@@ -3,18 +3,23 @@ extends Sprite2D
 var colours = ["default", "green", "red"]
 var colour_index : int = 0
 
+@export_group("Zoom")
 @export var zoom : float = 0.4
 @export var max_zoom : float = 100000.0
+@export var zoom_speed : float = 2.0
+
+@export_group("Iterations")
+@export var min_iterations : float = 10.0
+@export var max_iterations : float = 500.0
+@export var iterations : int = 300
+
 @export var m_offset : Vector2 = Vector2(-0.7, 0.0)
-@export var max_iterations : int = 300
 @export var scrolling_speed : float = 0.5
 @export var data_label : Label
 
-@export var zoom_speed : float = 2.0
 @onready var zoom_target : float = zoom
-@onready var mat : Material = material
-
 @onready var base_zoom : float = zoom
+@onready var mat : Material = material
 
 func _ready() -> void:
 	mat.set("shader_parameter/c_i", colour_index)
@@ -28,7 +33,7 @@ func vrtd(vec : Vector2, digit : int) -> Vector2:
 func _process(delta : float) -> void:
 	mat.set("shader_parameter/zoom", zoom)
 	mat.set("shader_parameter/offset", m_offset)
-	mat.set("shader_parameter/max_iterations", max_iterations)
+	mat.set("shader_parameter/max_iterations", iterations)
 	
 	if Input.is_action_pressed("zoom_out"):
 		if zoom_target > base_zoom:
@@ -40,9 +45,11 @@ func _process(delta : float) -> void:
 			zoom_target = max_zoom
 	
 	if Input.is_action_just_pressed("iter_up"):
-		max_iterations += 10
+		if iterations < max_iterations:
+			iterations += 10
 	elif Input.is_action_just_pressed("iter_down"):
-		max_iterations -= 10
+		if iterations > min_iterations:
+			iterations -= 10
 	
 	zoom = move_toward(zoom, zoom_target, zoom_speed * delta * zoom)
 	
@@ -56,7 +63,7 @@ func _process(delta : float) -> void:
 			colour_index = 0
 		mat.set("shader_parameter/c_i", colour_index)
 
-	data_label.text = str("Iterations: ", max_iterations, "\nZoom: ", rtd(zoom, 2), "\nOffset: ", vrtd(m_offset, 2), "\nColour: ", colours[colour_index])
+	data_label.text = str("Iterations: ", iterations, "\nZoom: ", rtd(zoom, 2), "\nOffset: ", vrtd(m_offset, 2), "\nColour: ", colours[colour_index])
 
 	var viewport_size : Vector2 = get_viewport_rect().size
 	mat.set("shader_parameter/viewport_size", viewport_size)

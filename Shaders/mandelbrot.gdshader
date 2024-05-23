@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform float zoom : hint_range(0.1, 100000.0) = 0.4;
 uniform vec2 offset = vec2(-0.7, 0.0);
-uniform int max_iterations : hint_range(1, 1000) = 300;
+uniform int max_iterations : hint_range(10, 500) = 300;
 uniform vec2 viewport_size = vec2(800.0, 800.0);
 uniform int c_i : hint_range(0, 2) = 0;
 
