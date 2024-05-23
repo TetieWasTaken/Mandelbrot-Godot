@@ -26,7 +26,7 @@ func _process(delta : float) -> void:
 	mat.set("shader_parameter/zoom", zoom)
 	mat.set("shader_parameter/offset", m_offset)
 	mat.set("shader_parameter/max_iterations", max_iterations)
-
+	
 	if Input.is_action_pressed("zoom_out"):
 		zoom_target -= 1.02 * delta * zoom
 	elif Input.is_action_pressed("zoom_in"):
@@ -36,9 +36,9 @@ func _process(delta : float) -> void:
 		max_iterations += 10
 	elif Input.is_action_just_pressed("iter_down"):
 		max_iterations -= 10
-
+	
 	zoom = move_toward(zoom, zoom_target, zoom_speed * delta * zoom)
-
+	
 	var direction : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction != Vector2.ZERO:
 		m_offset += direction * scrolling_speed * delta / zoom
@@ -48,7 +48,7 @@ func _process(delta : float) -> void:
 		if colour_index == colours.size():
 			colour_index = 0
 		mat.set("shader_parameter/c_i", colour_index)
-	
+
 	data_label.text = str("Iterations: ", max_iterations, "\nZoom: ", rtd(zoom, 2), "\nOffset: ", vrtd(m_offset, 2), "\nColour: ", colours[colour_index])
 
 	var viewport_size : Vector2 = get_viewport_rect().size
