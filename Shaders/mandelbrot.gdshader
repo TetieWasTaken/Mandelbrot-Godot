@@ -31,7 +31,6 @@ void fragment() {
     }
 
     float t = float(iterations) / float(max_iterations);
-    // vec3 rainbow_color = vec3(0.5 + 0.5 * cos(3.0 + t * 3.0), 0.5 + 0.5 * cos(8.0 + t * 3.0), 0.5 + 0.5 * cos(5.0 + t * 3.0));
 
     COLOR = map_to_colour(t);
 }
