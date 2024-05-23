@@ -2,11 +2,11 @@ extends Sprite2D
 
 @export var zoom : float = 0.4
 @export var m_offset : Vector2 = Vector2(-0.7, 0.0)
-@export var max_iterations : int = 100
-@export var scrolling_speed : float = 0.2
+@export var max_iterations : int = 300
+@export var scrolling_speed : float = 0.5
 @export var data_label : Label
 
-@export var zoom_speed : float = 1
+@export var zoom_speed : float = 2.0
 @onready var zoom_target : float = zoom
 
 func _process(delta : float) -> void:

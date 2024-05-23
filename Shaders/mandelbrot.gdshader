@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform float zoom : hint_range(0.1, 10.0) = 0.4;
 uniform vec2 offset = vec2(-0.7, 0.0);
-uniform int max_iterations : hint_range(1, 1000) = 100;
+uniform int max_iterations : hint_range(1, 1000) = 300;
 uniform vec2 viewport_size = vec2(800.0, 800.0);
 
 // https://github.com/gsass1/mandelbrot-opengl/blob/master/shader.glsl

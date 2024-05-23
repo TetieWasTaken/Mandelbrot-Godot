@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfhkytrjmfdv8"]
+[gd_scene load_steps=9 format=3 uid="uid://cfhkytrjmfdv8"]
 
 [ext_resource type="Shader" path="res://Shaders/mandelbrot.gdshader" id="1_2ox1x"]
 [ext_resource type="Script" path="res://Scenes/Mandelbrot Sprite.gd" id="2_bakb4"]
+[ext_resource type="FontFile" uid="uid://sig4me4ye48m" path="res://Fonts/ClashDisplay-Variable.ttf" id="3_k0mvl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lt65i"]
 shader = ExtResource("1_2ox1x")
 shader_parameter/zoom = 0.4
 shader_parameter/offset = Vector2(-0.7, 0)
-shader_parameter/max_iterations = 100
+shader_parameter/max_iterations = 300
 shader_parameter/viewport_size = Vector2(800, 800)
 
 [sub_resource type="Gradient" id="Gradient_wgqda"]
@@ -22,6 +23,10 @@ shader_parameter/offset = Vector2(0.26, 0)
 shader_parameter/max_iterations = 100
 shader_parameter/viewport_size = Vector2(1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_cnhfo"]
+font = ExtResource("3_k0mvl")
+font_size = 1600
+
 [node name="Root" type="Node2D"]
 
 [node name="Mandelbrot Sprite" type="Sprite2D" parent="." node_paths=PackedStringArray("data_label")]
@@ -29,9 +34,7 @@ material = SubResource("ShaderMaterial_lt65i")
 scale = Vector2(1000, 1000)
 texture = SubResource("GradientTexture2D_v4abc")
 script = ExtResource("2_bakb4")
-max_iterations = 400
 data_label = NodePath("../Label")
-zoom_speed = 2.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -53,7 +56,7 @@ offset_left = -30592.0
 offset_top = -30464.0
 offset_right = -30512.0
 offset_bottom = -30389.0
-scale = Vector2(100, 100)
 text = "Iterations: 
 Zoom: 
 Offset:"
+label_settings = SubResource("LabelSettings_cnhfo")
