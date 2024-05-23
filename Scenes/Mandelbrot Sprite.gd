@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var colours = ["default", "green"]
+var colours = ["default", "green", "red"]
 var colour_index : int = 0
 
 @export var zoom : float = 0.4

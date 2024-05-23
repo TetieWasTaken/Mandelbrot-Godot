@@ -20,6 +20,10 @@ vec4 map_to_colour(float t, int i) {
 		c_r = 9.0 * (1.0 - t) * t * t * t;
 		c_g = 8.5 * (1.0 - t) * (1.0 - t) * (1.0 - t) * t;
 		c_b = 15.0 * (1.0 - t) * (1.0 - t) * t * t;
+	} else if (i == 2) {
+		c_r = 8.5 * (1.0 - t) * (1.0 - t) * (1.0 - t) * t;
+		c_g = 9.0 * (1.0 - t) * t * t * t;
+		c_b = 15.0 * (1.0 - t) * (1.0 - t) * t * t;
 	}
 
 	return vec4(c_r, c_g, c_b, 1.0);
