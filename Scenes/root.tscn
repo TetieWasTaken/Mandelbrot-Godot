@@ -24,12 +24,13 @@ shader_parameter/viewport_size = Vector2(1, 1)
 
 [node name="Root" type="Node2D"]
 
-[node name="Mandelbrot Sprite" type="Sprite2D" parent="."]
+[node name="Mandelbrot Sprite" type="Sprite2D" parent="." node_paths=PackedStringArray("data_label")]
 material = SubResource("ShaderMaterial_lt65i")
 scale = Vector2(1000, 1000)
 texture = SubResource("GradientTexture2D_v4abc")
 script = ExtResource("2_bakb4")
 max_iterations = 400
+data_label = NodePath("../Label")
 zoom_speed = 2.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -46,3 +47,13 @@ grow_vertical = 2
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(0.03, 0.03)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -30592.0
+offset_top = -30464.0
+offset_right = -30512.0
+offset_bottom = -30389.0
+scale = Vector2(100, 100)
+text = "Iterations: 
+Zoom: 
+Offset:"

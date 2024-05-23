@@ -17,9 +17,9 @@ vec4 map_to_colour(float t) {
 void fragment() {
     vec2 frag_coord = FRAGCOORD.xy;
 
-    if (frag_coord.x < 0.0 || frag_coord.x >= viewport_size.x || frag_coord.y < 0.0 || frag_coord.y >= viewport_size.y) {
-        discard;
-    }
+    // if (frag_coord.x < 0.0 || frag_coord.x >= viewport_size.x || frag_coord.y < 0.0 || frag_coord.y >= viewport_size.y) {
+       //  discard;
+    // }
 
     vec2 c = (UV - vec2(0.5, 0.5)) / zoom + offset;
     vec2 z = vec2(0.0, 0.0);
