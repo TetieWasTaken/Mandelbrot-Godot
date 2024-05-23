@@ -1,5 +1,26 @@
 extends Sprite2D
 
+var colours = [
+	{
+		"tag": "default",
+		"colours": [
+			9.0, 1.0,
+			15.0, 1.0, 1.0,
+			8.5, 1.0, 1.0, 1.0
+		],
+	},
+	{
+		"tag": "green",
+		"colours": [
+			9.0, 1.0,
+			20.0, 1.0, 1.0,
+			2.5, 1.0, 1.0, 1.0
+		],
+	}
+]
+
+var colour_index : int = 0
+
 @export var zoom : float = 0.4
 @export var m_offset : Vector2 = Vector2(-0.7, 0.0)
 @export var max_iterations : int = 300
@@ -8,6 +29,10 @@ extends Sprite2D
 
 @export var zoom_speed : float = 2.0
 @onready var zoom_target : float = zoom
+@onready var mat : Material = material
+
+func _ready() -> void:
+	mat.set("shader_parameter/c_d", colours[colour_index]["colours"])
 
 func rtd(num : float, digit : int) -> float:
 	return round(num * pow(10.0, digit)) / pow(10.0, digit)
@@ -16,9 +41,9 @@ func vrtd(vec : Vector2, digit : int) -> Vector2:
 	return Vector2(rtd(vec.x, digit), rtd(vec.y, digit))
 
 func _process(delta : float) -> void:
-	material.set("shader_parameter/zoom", zoom)
-	material.set("shader_parameter/offset", m_offset)
-	material.set("shader_parameter/max_iterations", max_iterations)
+	mat.set("shader_parameter/zoom", zoom)
+	mat.set("shader_parameter/offset", m_offset)
+	mat.set("shader_parameter/max_iterations", max_iterations)
 
 	if Input.is_action_pressed("zoom_out"):
 		zoom_target -= 1.02 * delta * zoom
@@ -36,7 +61,13 @@ func _process(delta : float) -> void:
 	if direction != Vector2.ZERO:
 		m_offset += direction * scrolling_speed * delta / zoom
 	
-	data_label.text = str("Iterations: ", max_iterations, "\nZoom: ", rtd(zoom, 2), "\nOffset: ", vrtd(m_offset, 2))
+	if Input.is_action_just_pressed("cycle_colour"):
+		colour_index += 1
+		if colour_index == colours.size():
+			colour_index = 0
+		mat.set("shader_parameter/c_d", colours[colour_index]["colours"])
+	
+	data_label.text = str("Iterations: ", max_iterations, "\nZoom: ", rtd(zoom, 2), "\nOffset: ", vrtd(m_offset, 2), "\nColour: ", colours[colour_index]["tag"])
 
 	var viewport_size : Vector2 = get_viewport_rect().size
-	material.set("shader_parameter/viewport_size", viewport_size)
+	mat.set("shader_parameter/viewport_size", viewport_size)

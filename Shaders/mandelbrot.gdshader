@@ -4,14 +4,15 @@ uniform float zoom : hint_range(0.1, 10.0) = 0.4;
 uniform vec2 offset = vec2(-0.7, 0.0);
 uniform int max_iterations : hint_range(1, 1000) = 300;
 uniform vec2 viewport_size = vec2(800.0, 800.0);
+uniform float c_d[9];
 
 // https://github.com/gsass1/mandelbrot-opengl/blob/master/shader.glsl
 vec4 map_to_colour(float t) {
-    float r = 9.0 * (1.0 - t) * t * t * t;
-    float g = 15.0 * (1.0 - t) * (1.0 - t) * t * t;
-    float b = 8.5 * (1.0 - t) * (1.0 - t) * (1.0 - t) * t;
+    float c_r = c_d[0] * (c_d[1] - t) * t * t * t;
+    float c_g = c_d[2] * (c_d[3] - t) * (c_d[4] - t) * t * t;
+    float c_b = c_d[5] * (c_d[6] - t) * (c_d[7] - t) * (c_d[8] - t) * t;
 
-    return vec4(r, g, b, 1.0);
+    return vec4(c_r, c_g, c_b, 1.0);
 }
 
 void fragment() {
