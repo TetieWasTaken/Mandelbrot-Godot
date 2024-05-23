@@ -4,6 +4,7 @@ var colours = ["default", "green", "red"]
 var colour_index : int = 0
 
 @export var zoom : float = 0.4
+@export var max_zoom : float = 100000.0
 @export var m_offset : Vector2 = Vector2(-0.7, 0.0)
 @export var max_iterations : int = 300
 @export var scrolling_speed : float = 0.5
@@ -12,6 +13,8 @@ var colour_index : int = 0
 @export var zoom_speed : float = 2.0
 @onready var zoom_target : float = zoom
 @onready var mat : Material = material
+
+@onready var base_zoom : float = zoom
 
 func _ready() -> void:
 	mat.set("shader_parameter/c_i", colour_index)
@@ -28,9 +31,13 @@ func _process(delta : float) -> void:
 	mat.set("shader_parameter/max_iterations", max_iterations)
 	
 	if Input.is_action_pressed("zoom_out"):
-		zoom_target -= 1.02 * delta * zoom
+		if zoom_target > base_zoom:
+			zoom_target -= 1.02 * delta * zoom
 	elif Input.is_action_pressed("zoom_in"):
-		zoom_target += 1.02 * delta * zoom
+		if zoom_target < max_zoom:
+			zoom_target += 1.02 * delta * zoom
+		else:
+			zoom_target = max_zoom
 	
 	if Input.is_action_just_pressed("iter_up"):
 		max_iterations += 10
