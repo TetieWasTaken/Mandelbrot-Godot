@@ -63,7 +63,7 @@ func _process(delta : float) -> void:
 			colour_index = 0
 		mat.set("shader_parameter/c_i", colour_index)
 
-	data_label.text = str("Iterations: ", iterations, "\nZoom: ", rtd(zoom, 2), "\nOffset: ", vrtd(m_offset, 2), "\nColour: ", colours[colour_index])
+	data_label.text = str("Iterations: ", iterations, "\nZoom: ", rtd(zoom, 2), "\nOffset: ", vrtd(m_offset, 3), "\nColour: ", colours[colour_index])
 
 	var viewport_size : Vector2 = get_viewport_rect().size
 	mat.set("shader_parameter/viewport_size", viewport_size)
