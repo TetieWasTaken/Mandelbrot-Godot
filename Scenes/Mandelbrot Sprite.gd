@@ -9,6 +9,12 @@ extends Sprite2D
 @export var zoom_speed : float = 2.0
 @onready var zoom_target : float = zoom
 
+func rtd(num : float, digit : int) -> float:
+	return round(num * pow(10.0, digit)) / pow(10.0, digit)
+
+func vrtd(vec : Vector2, digit : int) -> Vector2:
+	return Vector2(rtd(vec.x, digit), rtd(vec.y, digit))
+
 func _process(delta : float) -> void:
 	material.set("shader_parameter/zoom", zoom)
 	material.set("shader_parameter/offset", m_offset)
@@ -26,12 +32,11 @@ func _process(delta : float) -> void:
 
 	zoom = move_toward(zoom, zoom_target, zoom_speed * delta * zoom)
 
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var direction : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction != Vector2.ZERO:
 		m_offset += direction * scrolling_speed * delta / zoom
 	
-	data_label.text = str("Iterations: ", max_iterations, "\nZoom: ", zoom, "\nOffset: ", m_offset)
+	data_label.text = str("Iterations: ", max_iterations, "\nZoom: ", rtd(zoom, 2), "\nOffset: ", vrtd(m_offset, 2))
 
-	# Get the viewport size and set it to the shader
-	var viewport_size = get_viewport_rect().size
+	var viewport_size : Vector2 = get_viewport_rect().size
 	material.set("shader_parameter/viewport_size", viewport_size)
