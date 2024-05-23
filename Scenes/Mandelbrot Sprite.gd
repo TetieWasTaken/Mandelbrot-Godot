@@ -1,24 +1,6 @@
 extends Sprite2D
 
-var colours = [
-	{
-		"tag": "default",
-		"colours": [
-			9.0, 1.0,
-			15.0, 1.0, 1.0,
-			8.5, 1.0, 1.0, 1.0
-		],
-	},
-	{
-		"tag": "green",
-		"colours": [
-			9.0, 1.0,
-			20.0, 1.0, 1.0,
-			2.5, 1.0, 1.0, 1.0
-		],
-	}
-]
-
+var colours = ["default", "green"]
 var colour_index : int = 0
 
 @export var zoom : float = 0.4
@@ -32,7 +14,7 @@ var colour_index : int = 0
 @onready var mat : Material = material
 
 func _ready() -> void:
-	mat.set("shader_parameter/c_d", colours[colour_index]["colours"])
+	mat.set("shader_parameter/c_i", colour_index)
 
 func rtd(num : float, digit : int) -> float:
 	return round(num * pow(10.0, digit)) / pow(10.0, digit)
@@ -65,9 +47,9 @@ func _process(delta : float) -> void:
 		colour_index += 1
 		if colour_index == colours.size():
 			colour_index = 0
-		mat.set("shader_parameter/c_d", colours[colour_index]["colours"])
+		mat.set("shader_parameter/c_i", colour_index)
 	
-	data_label.text = str("Iterations: ", max_iterations, "\nZoom: ", rtd(zoom, 2), "\nOffset: ", vrtd(m_offset, 2), "\nColour: ", colours[colour_index]["tag"])
+	data_label.text = str("Iterations: ", max_iterations, "\nZoom: ", rtd(zoom, 2), "\nOffset: ", vrtd(m_offset, 2), "\nColour: ", colours[colour_index])
 
 	var viewport_size : Vector2 = get_viewport_rect().size
 	mat.set("shader_parameter/viewport_size", viewport_size)

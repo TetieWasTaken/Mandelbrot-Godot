@@ -10,7 +10,7 @@ shader_parameter/zoom = 0.4
 shader_parameter/offset = Vector2(-0.7, 0)
 shader_parameter/max_iterations = 300
 shader_parameter/viewport_size = Vector2(800, 800)
-shader_parameter/c_d = null
+shader_parameter/c_i = 1
 
 [sub_resource type="Gradient" id="Gradient_wgqda"]
 
@@ -23,7 +23,7 @@ shader_parameter/zoom = 2.5
 shader_parameter/offset = Vector2(0.26, 0)
 shader_parameter/max_iterations = 100
 shader_parameter/viewport_size = Vector2(1, 1)
-shader_parameter/c_d = null
+shader_parameter/c_i = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_cnhfo"]
 font = ExtResource("3_k0mvl")
