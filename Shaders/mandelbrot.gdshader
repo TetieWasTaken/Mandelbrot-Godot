@@ -42,6 +42,9 @@ void fragment() {
 	
 	while (length(z) <= 2.0 && iterations < max_iterations) {
 		z = vec2(z.x * z.x - z.y * z.y, 2.0 * z.x * z.y) + c;
+		// Burning ship:
+		// z = vec2(z.x * z.x - z.y * z.y, 2.0 * abs(z.x) * abs(z.y)) + c;
+		// distortion possible due to abs(): https://www.reddit.com/r/math/comments/8buizk/why_is_the_burning_ship_fractal_so_messed_up/
 		iterations++;
 	}
 	
