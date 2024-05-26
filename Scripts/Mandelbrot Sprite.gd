@@ -18,6 +18,8 @@ var colour_index : int = 0
 @export var data_label : Label
 
 @onready var zoom_target : float = zoom
+@onready var offset_target : Vector2 = m_offset
+
 @onready var base_zoom : float = zoom
 @onready var mat : Material = material
 
@@ -55,7 +57,9 @@ func _process(delta : float) -> void:
 	
 	var direction : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction != Vector2.ZERO:
-		m_offset += direction * scrolling_speed * delta / zoom
+		offset_target += direction * scrolling_speed * delta / zoom
+	
+	m_offset = m_offset.move_toward(offset_target, delta * 0.5)
 	
 	if Input.is_action_just_pressed("cycle_colour"):
 		colour_index += 1
