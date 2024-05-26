@@ -2,9 +2,34 @@ extends MenuButton
 
 var points = [
 	{
-		"Name": "seahorse vly",
+		"name": "seahorse vly",
 		"offset": Vector2(-0.746, -0.117),
 		"zoom": 25
+	},
+	{
+		"name": "minibrot",
+		"offset": Vector2(-1.765, 0),
+		"zoom": 18
+	},
+	{
+		"name": "quad-spiral",
+		"offset": Vector2(0.293, -0.483),
+		"zoom": 40
+	},
+	{
+		"name": "triple-spiral",
+		"offset": Vector2(-0.099, -0.651),
+		"zoom": 107
+	},
+	{
+		"name": "claw valley",
+		"offset": Vector2(-0.126, -0.84),
+		"zoom": 320
+	},
+	{
+		"name": "scepter vly",
+		"offset": Vector2(-1.253, -0.03),
+		"zoom": 60
 	}
 ]
 
@@ -14,7 +39,7 @@ var points = [
 func _ready():
 	popup.clear()
 	for elem in points:
-		popup.add_item(elem["Name"])
+		popup.add_item(elem["name"])
 	popup.index_pressed.connect(_popup_pressed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
