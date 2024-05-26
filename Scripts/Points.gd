@@ -1,5 +1,7 @@
 extends MenuButton
 
+@export var anim_time : float = 2.5
+
 var points = [
 	{
 		"name": "seahorse vly",
@@ -47,11 +49,15 @@ func _process(delta):
 	pass
 
 func _popup_pressed(index : int) -> void:
-	if points[index]:
-		print("Pressed")
-		print(points[index])
+	if points[index] and not controller.is_animating:
+		controller.is_animating = true
 		controller.offset_target = points[index]["offset"]
 		controller.zoom_target = points[index]["zoom"]
+		
+		var distance : float = controller.m_offset.distance_to(controller.offset_target)
+		controller.offset_speed = (distance / anim_time)
+		
+		controller.zoom_t_speed = abs(controller.zoom - controller.zoom_target) / anim_time
 
 func go_to_point() -> void:
 	pass
