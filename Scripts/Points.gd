@@ -1,6 +1,6 @@
 extends MenuButton
 
-@export var anim_time : float = 2.5
+@export var anim_time : float = 5
 
 var points = [
 	{
@@ -12,6 +12,11 @@ var points = [
 		"name": "minibrot",
 		"offset": Vector2(-1.765, 0),
 		"zoom": 18
+	},
+	{
+		"name": "miniminibrot",
+		"offset": Vector2(-1.790024, 0),
+		"zoom": 100000
 	},
 	{
 		"name": "quad-spiral",
